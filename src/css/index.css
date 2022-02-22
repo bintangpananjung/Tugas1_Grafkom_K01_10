@@ -1,0 +1,16 @@
+.actions{
+    border: 1px solid black;
+    width: 750px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.change-menu{
+    margin: 0;
+}
+
+.canvas-board{
+    height: 750px; 
+    width: 750px;
+}

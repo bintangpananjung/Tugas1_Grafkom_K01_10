@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tugas1_Grafkom_K01_10</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!-- <script src="main.js"></script> -->
+    </head>
+    <body>
+        <h1 class="header">Painting Tool</h1>
+
+        <div class="outfiles">
+            <button id="import">Import</button>
+            <button id="export">Export</button>
+        </div> 
+        
+        <div class="shapes">
+            <input type="radio" name="action" value="line">Line 
+            <input type="radio" name="action" value="square">Square
+            <input type="radio" name="action" value="rectangle">Rectangle  
+            <input type="radio" name="action" value="polygon">Polygon  
+        </div>
+
+        <div class="actions">
+            <p class="change-menu">Change: </p>
+            <input type="radio" name="action" value="change-line">Line 
+            <input type="radio" name="action" value="change-square">Square  
+            <input type="radio" name="action" value="change-polygon-color">Polygon Color  
+        </div>
+
+        <div class="canvas-board">
+            <canvas id="glCanvas" width="750" height="750"></canvas>
+        </div>
+
+    </body>
+</html>
