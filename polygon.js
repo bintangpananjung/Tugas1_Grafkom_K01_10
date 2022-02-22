@@ -1,8 +1,8 @@
 const vertexShaderText = `
 precision mediump float;
-attribute vec4 vertPosition;
+attribute vec2 vertPosition;
 void main() {
-  gl_Position = vec4(vertPosition);
+  gl_Position = vec4(vertPosition,0.0,1.0);
 }
 `;
 
@@ -56,26 +56,19 @@ const InitWebGL = function () {
   if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
     console.log("error validating program");
   }
-  const triangleVertices = [
-    -0.5, 0.5, 0.0, 1.0, 0.5, 0.5, 0.0, 1.0, -0.5, -0.5, 0.0, 1.0, 0.5, -0.5,
-    0.0, 1.0,
-  ];
+  const Vertices = [-0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5];
 
-  const triangleVertexBufferObject = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexBufferObject);
-  gl.bufferData(
-    gl.ARRAY_BUFFER,
-    new Float32Array(triangleVertices),
-    gl.STATIC_DRAW
-  );
+  const VertexBufferObject = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
 
   const positionAttr = gl.getAttribLocation(program, "vertPosition");
   gl.vertexAttribPointer(
     positionAttr,
-    4,
+    2,
     gl.FLOAT,
     gl.FALSE,
-    4 * Float32Array.BYTES_PER_ELEMENT,
+    2 * Float32Array.BYTES_PER_ELEMENT,
     0
   );
   gl.enableVertexAttribArray(positionAttr);
