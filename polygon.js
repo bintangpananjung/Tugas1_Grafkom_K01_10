@@ -13,12 +13,30 @@ void main(){
 }
 `;
 
+function getCursorPos(canvas, event) {
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  return { x: x, y: y };
+}
+// function getNoPaddingNoBorderCanvasRelativeMousePosition(event, target) {
+//   target = target || event.target;
+//   var pos = getRelativeMousePosition(target, event);
+
+//   pos.x = (pos.x * target.width) / target.clientWidth;
+//   pos.y = (pos.y * target.height) / target.clientHeight;
+
+//   return pos;
+// }
+
 const InitWebGL = function () {
   console.log("yes");
 
   //init webgl
   /** @type {HTMLCanvasElement} */
   const canvas = document.getElementById("polygon-canvas");
+
   var gl = canvas.getContext("webgl");
   if (!gl) {
     gl = canvas.getContext("experimental-webgl");
@@ -26,6 +44,8 @@ const InitWebGL = function () {
   if (!gl) {
     alert("Give up");
   }
+  gl.viewport(0, 0, canvas.width, canvas.height);
+
   gl.clearColor(1, 1, 1, 1);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -56,23 +76,33 @@ const InitWebGL = function () {
   if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
     console.log("error validating program");
   }
-  const Vertices = [-0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5];
-
+  const Vertices = [];
+  console.log(Vertices.length / 2);
   const VertexBufferObject = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
+  canvas.addEventListener("mousedown", function (e) {
+    // getNoPaddingNoBorderCanvasRelativeMousePosition(e, canvas);
+    var pos = getCursorPos(canvas, e);
+    const x = (pos.x / canvas.width) * 2 - 1;
+    const y = (pos.y / canvas.height) * -2 + 1;
+    Vertices.push(x);
+    Vertices.push(y);
+    console.log("x: " + x + " y: " + y);
 
-  const positionAttr = gl.getAttribLocation(program, "vertPosition");
-  gl.vertexAttribPointer(
-    positionAttr,
-    2,
-    gl.FLOAT,
-    gl.FALSE,
-    2 * Float32Array.BYTES_PER_ELEMENT,
-    0
-  );
-  gl.enableVertexAttribArray(positionAttr);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
 
-  gl.useProgram(program);
-  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    const positionAttr = gl.getAttribLocation(program, "vertPosition");
+    gl.vertexAttribPointer(
+      positionAttr,
+      2,
+      gl.FLOAT,
+      gl.FALSE,
+      2 * Float32Array.BYTES_PER_ELEMENT,
+      0
+    );
+    gl.enableVertexAttribArray(positionAttr);
+
+    gl.useProgram(program);
+    gl.drawArrays(gl.TRIANGLE_FAN, 0, Vertices.length / 2);
+  });
 };
