@@ -1,16 +1,48 @@
-.actions{
-    border: 1px solid black;
-    width: 750px;
-    height: 200px;
+.header{
+    text-align: center;
+    padding-top: 5px;
+}
+
+body{
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.outfiles{
+    text-align: center;
+}
+
+#button {
+    padding: 10px 20px;
+    margin : 10px;
+}
+
+.shapes, .actions{
+    margin: 5px 10px 10px 10px;
+    padding: 5px 15px;
+    /* border: 1px solid black; */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shape-menu{
+    margin: 0 10px 0 0;
 }
 
 .change-menu{
-    margin: 0;
+    margin: 0 10px 0 0;
 }
 
 .canvas-board{
-    height: 750px; 
-    width: 750px;
+    height: 600px;
+    width: 800px;
+    border: 1px solid black;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    align-items: center;
 }

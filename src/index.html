@@ -9,15 +9,17 @@
         <h1 class="header">Painting Tool</h1>
 
         <div class="outfiles">
-            <button id="import">Import</button>
-            <button id="export">Export</button>
+            <button id="button">Import</button>
+            <button id="button">Export</button>
+            <button id="button" ><a class="link" href="./help.html" target="_blank">Help</a></button>
         </div> 
         
         <div class="shapes">
-            <input type="radio" name="action" value="line">Line 
-            <input type="radio" name="action" value="square">Square
-            <input type="radio" name="action" value="rectangle">Rectangle  
-            <input type="radio" name="action" value="polygon">Polygon  
+            <p class="shape-menu">Shape: </p>
+            <input type="radio" name="shape" value="line">Line 
+            <input type="radio" name="shape" value="square">Square
+            <input type="radio" name="shape" value="rectangle">Rectangle  
+            <input type="radio" name="shape" value="polygon">Polygon  
         </div>
 
         <div class="actions">
@@ -28,7 +30,7 @@
         </div>
 
         <div class="canvas-board">
-            <canvas id="glCanvas" width="750" height="750"></canvas>
+            <canvas id="glCanvas" width="800" height="600"></canvas>
         </div>
 
     </body>
