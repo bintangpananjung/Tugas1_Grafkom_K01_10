@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Tugas1_Grafkom_K01_10</title>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        
-    </head>
-    <body onload="InitWebGL()">
-        <h1 class="header">Painting Tool</h1>
+  <head>
+    <title>Tugas1_Grafkom_K01_10</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+  </head>
+  <body onload="InitWebGL()">
+    <h1 class="header">Painting Tool</h1>
 
-        <div class="outfiles">
-            <button id="button">Import</button>
-            <button id="button">Export</button>
-            <button id="button" ><a class="link" href="./help.html" target="_blank">Help</a></button>
-        </div> 
-        
-        <div class="shapes">
-            <p class="shape-menu">Shape: </p>
-            <input type="radio" name="shape" value="line">Line 
-            <input type="radio" name="shape" value="square">Square
-            <input type="radio" name="shape" value="rectangle">Rectangle  
-            <input type="radio" name="shape" value="polygon">Polygon  
-        </div>
+    <div class="outfiles">
+      <button id="button">Import</button>
+      <button id="button">Export</button>
+      <button id="button">
+        <a class="link" href="./help.html" target="_blank">Help</a>
+      </button>
+    </div>
 
-        <div class="actions">
-            <p class="change-menu">Change: </p>
-            <input type="radio" name="action" value="change-line">Line 
-            <input type="radio" name="action" value="change-square">Square  
-            <input type="radio" name="action" value="change-polygon-color">Polygon Color  
-        </div>
+    <div class="shapes">
+      <p class="shape-menu">Shape:</p>
+      <input type="radio" name="shape" value="line" />Line
+      <input type="radio" name="shape" value="square" />Square
+      <input type="radio" name="shape" value="rectangle" />Rectangle
+      <input type="radio" name="shape" value="polygon" />Polygon
+    </div>
 
-        <div class="canvas-board">
-            <canvas id="glCanvas" width="800" height="600"></canvas>
-        </div>
+    <div class="actions">
+      <p class="change-menu">Change:</p>
+      <input type="radio" name="action" value="change-line" />Line
+      <input type="radio" name="action" value="change-square" />Square
+      <input type="radio" name="action" value="change-polygon-color" />Polygon
+      Color
+    </div>
 
-        <script src="./js/init.js"></script>
-<!-- 
+    <div class="canvas-board">
+      <canvas id="glCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <script src="./js/init.js"></script>
+    <!-- 
         <script src=".js/line.js"></script>
         <script src=".js/square.js"></script>
         <script src=".js/rectangle.js"></script> -->
-        <script src="./js/polygon.js"></script>
-    </body>
+    <script src="./js/polygon.js"></script>
+  </body>
 </html>

@@ -29,9 +29,9 @@ function getCursorPos(canvas, event) {
 
 //   return pos;
 // }
-const canvas = document.getElementById("glCanvas");
+var canvas = document.getElementById("glCanvas");
 var gl = canvas.getContext("webgl");
-const program = gl.createProgram();
+var program = gl.createProgram();
 
 const InitWebGL = function () {
   console.log("yes");
@@ -79,4 +79,4 @@ const InitWebGL = function () {
 
   const VertexBufferObject = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
-}
+};
