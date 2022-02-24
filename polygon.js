@@ -1,15 +1,19 @@
 const vertexShaderText = `
 precision mediump float;
 attribute vec2 vertPosition;
+attribute vec3 vertColor;
+varying vec3 fragColor;
 void main() {
+  fragColor = vertColor;
   gl_Position = vec4(vertPosition,0.0,1.0);
 }
 `;
 
 const fragmentShaderText = `
 precision mediump float;
+varying vec3 fragColor;
 void main(){
-  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+  gl_FragColor = vec4(fragColor,1.0);
 }
 `;
 
@@ -77,9 +81,31 @@ const InitWebGL = function () {
     console.log("error validating program");
   }
   const Vertices = [];
+  var vertLen = 0;
   console.log(Vertices.length / 2);
   const VertexBufferObject = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
+  const positionAttr = gl.getAttribLocation(program, "vertPosition");
+  const colorAttr = gl.getAttribLocation(program, "vertColor");
+
+  gl.vertexAttribPointer(
+    positionAttr,
+    2,
+    gl.FLOAT,
+    gl.FALSE,
+    5 * Float32Array.BYTES_PER_ELEMENT,
+    0
+  );
+  gl.vertexAttribPointer(
+    colorAttr,
+    3,
+    gl.FLOAT,
+    gl.FALSE,
+    5 * Float32Array.BYTES_PER_ELEMENT,
+    2 * Float32Array.BYTES_PER_ELEMENT
+  );
+  gl.enableVertexAttribArray(positionAttr);
+  gl.enableVertexAttribArray(colorAttr);
   canvas.addEventListener("mousedown", function (e) {
     // getNoPaddingNoBorderCanvasRelativeMousePosition(e, canvas);
     var pos = getCursorPos(canvas, e);
@@ -87,22 +113,14 @@ const InitWebGL = function () {
     const y = (pos.y / canvas.height) * -2 + 1;
     Vertices.push(x);
     Vertices.push(y);
+    Vertices.push(...[1, 0.2, 0.2]);
+    vertLen += 1;
+    console.log(Vertices);
     console.log("x: " + x + " y: " + y);
 
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices), gl.STATIC_DRAW);
 
-    const positionAttr = gl.getAttribLocation(program, "vertPosition");
-    gl.vertexAttribPointer(
-      positionAttr,
-      2,
-      gl.FLOAT,
-      gl.FALSE,
-      2 * Float32Array.BYTES_PER_ELEMENT,
-      0
-    );
-    gl.enableVertexAttribArray(positionAttr);
-
     gl.useProgram(program);
-    gl.drawArrays(gl.TRIANGLE_FAN, 0, Vertices.length / 2);
+    gl.drawArrays(gl.TRIANGLE_FAN, 0, vertLen);
   });
 };
