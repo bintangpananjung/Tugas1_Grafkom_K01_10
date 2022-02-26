@@ -47,7 +47,7 @@ const renderSquare = function () {
         posTemp=[];
 
         vCount = 0;
-        console.log(Vertices)
+        // console.log(Vertices)
         for (let i = 0; i < Vertices.length; i+=8) {
           gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(Vertices.slice(i, i + 8)), gl.STATIC_DRAW);
           gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
