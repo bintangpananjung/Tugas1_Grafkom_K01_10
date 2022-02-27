@@ -72,21 +72,26 @@ const renderCurrPolygon = function (polygon) {
     polygon.Vertices.length / 2 - polygon.offset[polygon.offset.length - 1];
   gl.drawArrays(gl.TRIANGLE_FAN, 0, n_vertex);
 };
-const renderPolygon = function (polygon) {
+const renderPolygon = function (polygon, isPolygon) {
   // console.log(polygon);
-  canvas.addEventListener("mousedown", function (e) {
-    var pos = getCursorPos(canvas, e);
-    const x = (pos.x / canvas.width) * 2 - 1;
-    const y = (pos.y / canvas.height) * -2 + 1;
-    polygon.Vertices.push(x);
-    polygon.Vertices.push(y);
-    polygon.Colors.push(...baseColor);
-
-    //draw previous polygon
-    renderPrevPolygon(polygon);
-    renderCurrPolygon(polygon);
-  });
+  if (isPolygon) {
+    canvas.addEventListener("mousedown", polygonListener);
+  } else {
+    canvas.removeEventListener("mousedown", polygonListener);
+  }
 };
+function polygonListener(e) {
+  var pos = getCursorPos(canvas, e);
+  const x = (pos.x / canvas.width) * 2 - 1;
+  const y = (pos.y / canvas.height) * -2 + 1;
+  drawing.Vertices.push(x);
+  drawing.Vertices.push(y);
+  drawing.Colors.push(...baseColor);
+
+  //draw previous polygon
+  renderPrevPolygon(drawing);
+  renderCurrPolygon(drawing);
+}
 const changePolygonColor = function (polygon, color) {
   baseColor = hexToRgb(color);
   // console.log(polygon.Colors);
@@ -103,16 +108,19 @@ const changePolygonColor = function (polygon, color) {
 var VertexBufferObject = gl.createBuffer();
 var colorBufferObject = gl.createBuffer();
 var n_vertex = 0;
-document.getElementsByName("shape")[3].addEventListener("change", e => {
-  if (document.getElementsByName("shape")[3].value === "polygon") {
-    renderPolygon(polygon);
-  }
-});
+// document.getElementsByName("shape")[3].addEventListener("change", e => {
+//   if (document.getElementsByName("shape")[3].value === "polygon") {
+//     renderPolygon(polygon);
+//   }
+// });
 document.getElementById("polygon-color").addEventListener("change", e => {
   changePolygonColor(polygon, e.target.value);
 });
 document.getElementById("init-polygon").addEventListener("click", e => {
   if (n_vertex > 2) {
-    polygon.offset.push(n_vertex + polygon.offset[polygon.offset.length - 1]);
+    drawing.render.push({
+      offset: n_vertex + polygon.offset[polygon.offset.length - 1],
+      mode: "polygon",
+    });
   }
 });

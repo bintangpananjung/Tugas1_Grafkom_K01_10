@@ -30,8 +30,11 @@ var canvas = document.getElementById("glCanvas");
 var gl = canvas.getContext("webgl");
 var program = gl.createProgram();
 var baseColor = [0, 0, 0];
-var polygon = { Vertices: [], Colors: [], offset: [0] };
-
+// var drawing = { Lines: [], Squares: [], Rectangles: [], Polygons: [{}] };
+var Squares = [];
+var Rectangles = [];
+var Lines = [];
+var Polygons = [];
 const InitWebGL = function () {
   console.log("yes");
 
@@ -83,3 +86,17 @@ const InitWebGL = function () {
   // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(2 * 8000), gl.STATIC_DRAW);
   gl.bindBuffer(gl.ARRAY_BUFFER, colorBufferObject);
 };
+document.querySelectorAll(".shapes input").forEach(e => {
+  e.addEventListener("change", val => {
+    val.preventDefault();
+    renderLine(document.getElementsByName("shape")[0].checked);
+    renderSquare(document.getElementsByName("shape")[1].checked);
+    renderRectangle(document.getElementsByName("shape")[2].checked);
+    renderPolygon(drawing, document.getElementsByName("shape")[3].checked);
+  });
+});
+
+function renderAll() {
+  // gl.clearColor(1, 1, 1, 1);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+}
