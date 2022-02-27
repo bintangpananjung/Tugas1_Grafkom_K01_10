@@ -1,15 +1,19 @@
 const vertexShaderText = `
 precision mediump float;
 attribute vec2 vertPosition;
+attribute vec3 color;
+varying vec3 vertColor;
 void main() {
   gl_Position = vec4(vertPosition,0.0,1.0);
+  vertColor = color;
 }
 `;
 
 const fragmentShaderText = `
 precision mediump float;
+varying vec3 vertColor;
 void main(){
-  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+  gl_FragColor = vec4(vertColor,1.0);  
 }
 `;
 
@@ -20,18 +24,12 @@ function getCursorPos(canvas, event) {
 
   return { x: x, y: y };
 }
-// function getNoPaddingNoBorderCanvasRelativeMousePosition(event, target) {
-//   target = target || event.target;
-//   var pos = getRelativeMousePosition(target, event);
 
-//   pos.x = (pos.x * target.width) / target.clientWidth;
-//   pos.y = (pos.y * target.height) / target.clientHeight;
-
-//   return pos;
-// }
 var canvas = document.getElementById("glCanvas");
 var gl = canvas.getContext("webgl");
 var program = gl.createProgram();
+var baseColor = [0, 0, 0];
+var polygon = { Vertices: [], Colors: [], offset: [0] };
 
 const InitWebGL = function () {
   console.log("yes");
@@ -76,7 +74,11 @@ const InitWebGL = function () {
   if (!gl.getProgramParameter(program, gl.VALIDATE_STATUS)) {
     console.log("error validating program");
   }
+  gl.useProgram(program);
+  var VertexBufferObject = gl.createBuffer();
+  var colorBufferObject = gl.createBuffer();
 
-  const VertexBufferObject = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, VertexBufferObject);
+  // gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(2 * 8000), gl.STATIC_DRAW);
+  gl.bindBuffer(gl.ARRAY_BUFFER, colorBufferObject);
 };
