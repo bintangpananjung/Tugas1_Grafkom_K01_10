@@ -92,7 +92,7 @@ document.querySelectorAll(".shapes input").forEach(e => {
     renderLine(document.getElementsByName("shape")[0].checked);
     renderSquare(document.getElementsByName("shape")[1].checked);
     renderRectangle(document.getElementsByName("shape")[2].checked);
-    renderPolygon(drawing, document.getElementsByName("shape")[3].checked);
+    renderPolygon(Polygons, document.getElementsByName("shape")[3].checked);
   });
 });
 
