@@ -100,8 +100,8 @@ function squareListener(e) {
     Squares.Vertices.push(y3 / canvas.height + 1);
     Squares.Vertices.push(x4 / canvas.width - 1);
     Squares.Vertices.push(y4 / canvas.height + 1);
-    Squares.Colors.push(...[baseColor]);
-    Squares.Colors.push(...[baseColor]);
+    // Squares.Colors.push(...baseColor);
+    // Squares.Colors.push(...baseColor);
     posTemp = [];
 
     vCount = 0;

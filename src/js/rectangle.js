@@ -26,8 +26,8 @@ function rectangleListener(e) {
   posTemp.push(pos);
 
   vCount += 1;
-  Rectangles.Colors.push(...[baseColor]);
-  Rectangles.Colors.push(...[baseColor]);
+  // Rectangles.Colors.push(...baseColor);
+  // Rectangles.Colors.push(...baseColor);
   if (vCount == 1) {
     Rectangles.Vertices.push(pos.x / canvas.width - 1);
     Rectangles.Vertices.push(pos.y / canvas.height + 1);

@@ -19,26 +19,27 @@ async function openfile() {
 
   // Deep copy vertex and colors
   try {
-        json_file = JSON.parse(contents);
-        
-        // Square
-        Squares.Vertices = [...json_file.square.Vertices];
-        Squares.Colors = [...json_file.square.Colors];
+    json_file = JSON.parse(contents);
 
-        // Rectangles
-        Rectangles.Vertices = [...json_file.rectangle.Vertices];
-        Rectangles.Colors = [...json_file.rectangle.Colors];
+    // Square
+    Squares.Vertices = [...json_file.square.Vertices];
+    Squares.Colors = [...json_file.square.Colors];
 
-        // Lines
-        Lines.Vertices = [...json_file.lines.Vertices];
-        Lines.Colors = [...json_file.lines.Colors];
+    // Rectangles
+    Rectangles.Vertices = [...json_file.rectangle.Vertices];
+    Rectangles.Colors = [...json_file.rectangle.Colors];
 
-        // Polygons
-        Polygons.Vertices = [...json_file.polygon.Vertices];
-        Polygons.Colors = [...json_file.polygon.Colors];   
-    } catch (error) {
-        alert("File is corrupted / Not 2D Web-CAD save file")
-    }
+    // Lines
+    Lines.Vertices = [...json_file.lines.Vertices];
+    Lines.Colors = [...json_file.lines.Colors];
+
+    // Polygons
+    Polygons.Vertices = [...json_file.polygon.Vertices];
+    Polygons.Colors = [...json_file.polygon.Colors];
+  } catch (error) {
+    console.log(error);
+    alert("File is corrupted / Not 2D Web-CAD save file");
+  }
 
   // Clear Canvas
   gl.clearColor(1, 1, 1, 1);
