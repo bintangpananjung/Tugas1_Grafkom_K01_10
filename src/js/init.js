@@ -31,7 +31,7 @@ var gl = canvas.getContext("webgl");
 var program = gl.createProgram();
 var baseColor = [0, 0, 0];
 // var drawing = { Lines: [], Squares: [], Rectangles: [], Polygons: [{}] };
-var Squares = [];
+var Squares = { Vertices: [], Colors: [] };
 var Rectangles = { Vertices: [], Colors: [] };
 var Lines = { Vertices: [], Colors: [] };
 var Polygons = { Vertices: [], Colors: [], offset: [0] };
@@ -80,13 +80,15 @@ const InitWebGL = function () {
   }
   gl.useProgram(program);
 };
-document.querySelectorAll(".shapes input").forEach(e => {
+document.querySelectorAll(".radio input").forEach(e => {
   e.addEventListener("change", val => {
     val.preventDefault();
     renderLine(document.getElementsByName("shape")[0].checked);
     renderSquare(document.getElementsByName("shape")[1].checked);
     renderRectangle(document.getElementsByName("shape")[2].checked);
     renderPolygon(document.getElementsByName("shape")[3].checked);
+    renderChangeLine(document.getElementsByName("shape")[4].checked);
+    renderChangeSquare(document.getElementsByName("shape")[5].checked);
   });
 });
 
@@ -97,4 +99,5 @@ function renderAll() {
   renderCurrPolygon();
   renderAllLines();
   renderAllRectangles();
+  renderAllSquares();
 }

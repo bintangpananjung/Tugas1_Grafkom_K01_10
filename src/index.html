@@ -8,39 +8,41 @@
     <h1 class="header">Painting Tool</h1>
 
     <div class="outfiles">
-      <button id="button">Import</button>
-      <button id="button">Export</button>
+      <button id="button" name="import">Import</button>
+      <button id="button" name="export">Export</button>
       <button id="button">
         <a class="link" href="./help.html" target="_blank">Help</a>
       </button>
     </div>
 
-    <div class="shapes">
-      <p class="shape-menu">Shape:</p>
-      <input type="radio" name="shape" value="line" />Line
-      <input type="radio" name="shape" value="square" />Square
-      <input type="radio" name="shape" value="rectangle" />Rectangle
-      <input type="radio" name="shape" value="polygon" />Polygon
-      <button style="margin-left: 10px" id="init-polygon">
-        Init new polygon
-      </button>
-    </div>
+    <div class="radio">
+      <div class="shapes">
+        <p class="shape-menu">Shape:</p>
+        <input type="radio" name="shape" value="line" />Line
+        <input type="radio" name="shape" value="square" />Square
+        <input type="radio" name="shape" value="rectangle" />Rectangle
+        <input type="radio" name="shape" value="polygon" />Polygon
+        <button style="margin-left: 10px" id="init-polygon">
+          Init new polygon
+        </button>
+      </div>
 
-    <div class="actions">
-      <p class="change-menu">Change:</p>
-      <input type="radio" name="action" value="change-line" />Line
-      <input type="radio" name="action" value="change-square" />Square
-      <input
-        type="color"
-        name=""
-        id="polygon-color"
-        value="#000000"
-        style="margin-left: 10px"
-      />Change polygon color
+      <div class="actions">
+        <p class="change-menu">Change:</p>
+        <input type="radio" name="shape" value="change-line" />Line
+        <input type="radio" name="shape" value="change-square" />Square
+        <input
+          type="color"
+          name=""
+          id="polygon-color"
+          value="#000000"
+          style="margin-left: 10px"
+        />Change polygon color
+      </div>
     </div>
 
     <div class="canvas-board">
-      <canvas id="glCanvas" width="800" height="600"></canvas>
+      <canvas id="glCanvas" width="600" height="600"></canvas>
     </div>
 
     <script src="./js/init.js"></script>
