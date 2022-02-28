@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 1rem 5rem;
+        box-sizing: border-box;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif">
+      Panduan Penggunaan
+    </h1>
+    <ul style="font-family: Verdana, Geneva, Tahoma, sans-serif">
+      <li>Untuk memulai gambar, pilihlah opsi "shape" yang diinginkan.</li>
+      <li>
+        Klik pada canvas simpul-simpul yang akan membentuk gambar yang anda
+        pilih sebelumnya
+      </li>
+      <li>
+        Untuk pembuatan line/garis, diperlukan dua simpul. Garis akan dibentuk
+        dengan menghubungkan dua simpul tadi. jika lebih dari 2 simpul yang
+        diberikan maka akan dibuat garis baru lagi.
+      </li>
+      <li>
+        Untuk pembuatan square/persegi, diperlukan dua simpul. Persegi akan
+        dibentuk dengan menghubungkan dua simpul tadi (menjadi garis) kemudian
+        membuat garis sejajar dengan jarak sesuai dengan panjang garis yang
+        dibuat.
+      </li>
+      <li>
+        untuk pembuatan rectangle/persegi panjang, diperlukan dua simpul.
+        Persegi panjang akan dibentuk dengan menghubungkan kedua simpul tadi
+        sebagai diagonal dari persegi panjang, kemudian membentuk 2 simpul
+        lainnya yang tegak lurus dengan kedua simpul pertama.
+      </li>
+      <li>
+        untuk pembuatan polygon/segi-n, diperlukan minimal 3 simpul. Polygon
+        dibuat dengan menghubungkan semua simpul yang diberikan dengan maksimal
+        jumlah simpul tidak terbatas. jika ingin membuat polygon baru, klik
+        tombol "init new polygon".
+      </li>
+      <li>
+        untuk mengubah warna polygon, diperlukan minimal 1 polygon. warna
+        polygon yang diganti adalah warna dari polygon terakhir yang dibuat
+        (tidak bisa mengganti warna polygon sebelumnya).
+      </li>
+    </ul>
+  </body>
+</html>
